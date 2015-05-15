@@ -5,7 +5,7 @@ require 'unknown/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "unknown"
-  spec.version       = Unknown::VERSION
+  spec.version       = UnknownClass::VERSION
   spec.authors       = ["Kevin Olbrich"]
   spec.email         = ["kevin.olbrich@gmail.com"]
 

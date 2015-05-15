@@ -1,15 +1,19 @@
-require 'pry'
 require "unknown/version"
 require 'unknown/extensions/numeric'
 require 'unknown/extensions/complex'
+require 'unknown/extensions/math'
 
 # A numeric class that encapsulates the idea of an unknown number.
-# Any math operation that includes an unknown is also unknown
+# Any math operation that includes an unknown is also Unknown
 # this allows complex math functions to run without throwing execptions
-# but the end result will be unknown if any of the values in the formula are also unknown
-class Unknown < Numeric
+# but the end result will be unknown if any of the values in the formula are also Unknown
+class UnknownClass < Numeric
   def unknown?
     true
+  end
+
+  def inspect
+    "Unknown"
   end
 
   def coerce(_)
@@ -18,7 +22,7 @@ class Unknown < Numeric
 
   # operators
   def *(_)
-    unknown
+    Unknown
   end
 
   def /(_)
@@ -56,8 +60,9 @@ class Unknown < Numeric
   end
 
   private
-
   def unknown
     self.class.new
   end
 end
+
+Unknown = ::UnknownClass.new

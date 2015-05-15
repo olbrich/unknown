@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Unknown.new do
+describe Unknown do
   it 'has a version number' do
-    expect(Unknown::VERSION).not_to be nil
+    expect(UnknownClass::VERSION).not_to be nil
   end
 
   it 'operators' do
