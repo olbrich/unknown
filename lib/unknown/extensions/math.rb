@@ -1,5 +1,5 @@
 module Math
-  %w(cos cosh sin sinh tan tanh sqrt cbrt).each do |meth|
+  %w(acos acosh cos cosh asin asinh sin sinh atan tan atanh tanh sqrt cbrt exp erf erfc gamma log log2).each do |meth|
     original_method = "#{meth}_without_unknown".to_sym
     alias_method original_method, meth.to_sym
     define_method(meth.to_sym) do |other|
