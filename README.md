@@ -1,8 +1,8 @@
 # Unknown
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/unknown`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Unknown is a class representing a Numeric that is unknown.  By using
+this class to represent unknown values instead of nil it is possible to
+avoid doing nil checks in your functions.
 
 ## Installation
 
@@ -22,7 +22,28 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Before using Unknown
+
+
+    def population(a,k,t)
+      fail "a is missing" unless a
+      fail "k is missing" unless k
+      fail "t is missing" unless t
+      a*Math.exp(-k*t)
+    end
+
+    population(20, 30, nil) #=> Exception "t is missing"
+
+When using Unknown
+
+    require 'unknown'
+
+    def population(a,k,t)
+      a*Math.exp(-k*t)
+    end
+
+    population(20,30,Unknown) # => Unknown
+
 
 ## Development
 
