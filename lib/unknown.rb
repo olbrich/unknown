@@ -12,9 +12,18 @@ class UnknownClass < Numeric
     true
   end
 
+  def if_unknown?(&block)
+    yield self
+  end
+
+  def if_known?(&block)
+    self
+  end
+
   def inspect
     "Unknown"
   end
+  alias_method :to_s, :inspect
 
   def coerce(_)
     [unknown, unknown]
@@ -47,6 +56,11 @@ class UnknownClass < Numeric
     end
   end
 
+  %w(to_f to_i to_c to_r).each do |meth|
+    define_method(meth.to_sym) do
+      unknown
+    end
+  end
   #comparisons
 
   %w(> >= < <=).each do |operator|

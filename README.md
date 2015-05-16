@@ -24,7 +24,7 @@ Or install it yourself as:
 
 Before using Unknown
 
-
+    # nil checking of arguments
     def population(a,k,t)
       fail "a is missing" unless a
       fail "k is missing" unless k
@@ -34,11 +34,14 @@ Before using Unknown
 
     population(20, 30, nil) #=> Exception "t is missing"
 
-When using Unknown
+    #
+
+
+After using Unknown
 
     require 'unknown'
 
-    def population(a,k,t)
+    def population(a=Unknown,k=Unknown,t=Unknown)
       a*Math.exp(-k*t)
     end
 
