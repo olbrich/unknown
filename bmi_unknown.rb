@@ -9,6 +9,8 @@ class Patient
     # It's pretty obvious from these initializers when they are Unknown and when they aren't
     @height = _height || Unknown
     @weight = _weight || Unknown
+    # if height & weight are required then throw an exception
+    # fail ArgumentError, 'height is required' if _height.unknown?
   end
 
   # No nil checks for height and weight, just the relevant formula
@@ -35,7 +37,8 @@ patients = [
   Patient.new('Bob', 72, 200),
   Patient.new('Tom', 65, Unknown),
   Patient.new('Sam', Unknown, 225),
-  Patient.new('Jim', Unknown, Unknown)
+  Patient.new('Jim', Unknown, Unknown),
+  PatientWithDefaults.new('Terry')
 ]
 
 # Presentation
