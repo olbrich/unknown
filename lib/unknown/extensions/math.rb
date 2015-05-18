@@ -1,4 +1,5 @@
 module Math
+  # arity 1
   %w(
   acos
   acosh
@@ -32,8 +33,11 @@ module Math
   end
 
   # arity 2
-  %w(hypot atan2).each do |original_method|
-    method_without_unknown = "#{meth}_without_unknown".to_sym
+  %w(
+  hypot
+  atan2
+  ).each do |original_method|
+    method_without_unknown = "#{original_method}_without_unknown".to_sym
     alias_method method_without_unknown, original_method.to_sym
     define_method(original_method.to_sym) do |arg1,arg2|
       return Unknown if arg1.unknown? || arg2.unknown?

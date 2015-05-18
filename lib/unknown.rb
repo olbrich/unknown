@@ -2,7 +2,6 @@ require "unknown/version"
 require 'unknown/extensions/numeric'
 require 'unknown/extensions/complex'
 require 'unknown/extensions/math'
-#require 'unknown/extensions/nil'
 
 # A numeric class that encapsulates the idea of an unknown number.
 # Any math operation that includes an unknown is also Unknown
@@ -13,15 +12,19 @@ class UnknownClass < Numeric
     true
   end
 
-  def if_unknown?(&block)
-    yield self
+  def if_unknown?(value=nil, &block)
+    if block_given?
+      yield
+    else
+      value
+    end
   end
 
   def if_known?(&block)
     self
   end
 
-  def inspect
+  def inspect(*_)
     "Unknown"
   end
   alias_method :to_s, :inspect
@@ -30,7 +33,6 @@ class UnknownClass < Numeric
     [self, self]
   end
 
-  # operators
   def round(_=nil)
     self
   end
@@ -76,15 +78,8 @@ class UnknownClass < Numeric
     end
   end
 
-  #comparisons
-  %w(> >= < <=).each do |operator|
-    define_method(operator.to_sym) do |other|
-      fail ArgumentError, "Comparison of #{other.class} with #{self.class.name} failed"
-    end
-  end
-
-  def eq?(other)
-    other.unknown?
+  def <=>(_)
+    nil
   end
 end
 
